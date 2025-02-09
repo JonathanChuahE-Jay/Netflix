@@ -1,0 +1,14 @@
+.avatar {
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.square {
+    border-radius: 10%;
+}
+

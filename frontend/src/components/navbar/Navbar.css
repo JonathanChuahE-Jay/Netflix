@@ -1,0 +1,57 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px 60px;
+    z-index: 1000;
+    box-sizing: border-box;
+    max-width: 100vw;
+    transition: background 0.5s ease-in-out;
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.navbar.not-scrolled {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1));
+}
+
+.link-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.navbar-link {
+    color: lightgray;  
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 20px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-link:hover {
+    color: gray; 
+}
+
+.navbar-link.active {
+    color: white; 
+}
+
+.navbar-right-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.navbar-logo {
+    height: auto;  
+    width: 100px;
+    object-fit: contain;
+}

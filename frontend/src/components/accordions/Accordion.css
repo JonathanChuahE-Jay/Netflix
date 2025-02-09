@@ -1,0 +1,88 @@
+.vertical-accordions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.vertical-accordion {
+    cursor: pointer;
+    height: 300px;
+    width: 10%;
+    transition: width 0.5s ease-in-out;
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.vertical-accordion-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: filter 0.3s ease-in-out;
+    opacity: 0.6;
+}
+
+.vertical-accordion:hover {
+    width: 30%;
+}
+
+.vertical-accordion:hover .vertical-accordion-img {
+    opacity: 1;
+    filter: brightness(1.1);
+}
+
+.image-overlay {
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: transparent;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    white-space: nowrap;
+    transition: bottom 0.3s ease-out, opacity 0.1s ease-out; 
+}
+
+.game-icon-container {
+    border: 1px solid white;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px; 
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.image-overlay p {
+    opacity: 0; 
+}
+
+.image-overlay.show p {
+    bottom: 0px; 
+    transition: opacity 0.3s ease-out;
+    opacity: 1; 
+}
+
+@media (max-width: 768px) {
+    .vertical-accordion:hover {
+        width: 100%;
+    }
+    .vertical-accordion {
+        width: 20%;
+    }
+}

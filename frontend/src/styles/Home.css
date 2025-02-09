@@ -1,0 +1,11 @@
+p {
+    color: white;
+    margin: 10px 0px
+}
+.home {
+    background-color: black;
+    overflow-x: hidden;
+}
+.section-container{
+    padding: 20px;
+}

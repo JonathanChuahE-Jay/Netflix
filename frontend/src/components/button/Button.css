@@ -1,0 +1,54 @@
+button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.search-bar-container { 
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar-input {
+    color: white;
+    border: 1px solid white;
+    background-color: transparent;
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.search-bar-input.expanded {
+    width: 200px;
+    opacity: 1;
+    padding: 8px 10px;
+    text-indent: 30px;
+}
+
+.search-bar-icon-button {
+    position: absolute;
+    left: -30px;
+    border: none;
+    transition: left 0.3s ease-in-out;
+}
+
+.search-bar-clear-button {
+    position: absolute;
+    right: 0px;
+    border: none;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.search-bar-icon-button.inside-left {
+    left: 5px;
+}
+
+.search-bar-clear-button.inside-right {
+    opacity: 1;
+    right: 5px;
+}

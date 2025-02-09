@@ -1,0 +1,156 @@
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+    gap: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    height: 150px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: transparent;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card.no-hover {
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover .card-image {
+    transform: scale(1.1);
+}
+
+.cards .card:first-of-type::before,
+.cards .card:last-of-type::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cards .card:first-of-type::before {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+}
+
+.cards .card:last-of-type::before {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+}
+
+.pagination-button {
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    position: absolute;
+    background-color: transparent;
+    pointer-events: auto;
+    color: white;
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+    color: white;
+}
+
+.pagination-button.left-arrow {
+    left: 0;
+    width: 8%;
+    height: 100%;
+}
+
+.pagination-button.right-arrow {
+    right: 0;
+    width: 8%;
+    height: 100%;
+}
+
+.half-view {
+    transform: scale(0.8);
+    width: 10%;
+    opacity: 0.5;
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.2s ease-in-out forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.2s ease-in-out forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.2s ease-in-out forwards;
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.2s ease-in-out forwards;
+}
+
+@keyframes slideOutLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+

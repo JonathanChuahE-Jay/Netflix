@@ -1,0 +1,208 @@
+.modal {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 1);
+    color: white;
+    border-radius: 5px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 400px;
+    max-width: 90vw;
+    left: max(5px, min(90vw, var(--modal-left)));
+}
+
+.img-title {
+    font-family: sans-serif;
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border-radius: 4px;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.modal.zoom-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.modal.zoom-out.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    animation: zoomIn 0.2s ease-in-out forwards;
+}
+
+.modal-content {
+    padding: 15px;
+}
+
+.modal-tags {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    padding: 0;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.modal-tag::after {
+    content: " • ";
+    margin-left: 5px;
+    color: #aaa;
+}
+
+.modal-tag:last-child::after {
+    content: "";
+}
+
+.modal-details {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: #ddd;
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.modal-age {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.round-button {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    transition: all 0.1s ease-in-out;
+}
+
+.round-button:hover {
+    border: 2px solid white;
+}
+
+.round-button.special {
+    border: 0px;
+    color: black;
+    background-color: white;
+}
+
+.round-button.special:hover {
+    border: 2px solid gray;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.hover-container {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+
+.hover-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(0.5);
+    display: flex;
+    gap: 3px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s, transform 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 5px 10px;
+    border-radius: 24px;
+    border: 1px solid black;
+}
+
+.hover-container:hover .hover-buttons {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scaleX(1);
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0s, transform 0.3s ease-in-out;
+}
+
+.hover-buttons .round-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.hover-buttons .round-button:hover {
+    border-color: gray;
+    transform: scale(1.1);
+}
+
+.hover-buttons .round-button:first-child {
+    margin: 0;
+}
+
+.hover-buttons .round-button:last-child {
+    margin: 0;
+}
+
+.modal-image-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.modal img,
+.modal video {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+    position: relative;
+    display: block;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
