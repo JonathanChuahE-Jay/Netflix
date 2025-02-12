@@ -9,7 +9,7 @@
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     pointer-events: none;
     transform: translate(-50%, -50%) scale(0.9);
-    width: 400px;
+    width: 300px;
     max-width: 90vw;
     left: max(5px, min(90vw, var(--modal-left)));
 }
@@ -46,11 +46,9 @@
     pointer-events: auto;
     animation: zoomIn 0.2s ease-in-out forwards;
 }
-
-.modal-content {
+.modal-content{
     padding: 15px;
 }
-
 .modal-tags {
     list-style: none;
     display: flex;
@@ -189,7 +187,7 @@
 .modal video {
     width: 100%;
     height: auto;
-    max-height: 150px;
+    max-height: 160px;
     object-fit: cover;
     position: relative;
     display: block;

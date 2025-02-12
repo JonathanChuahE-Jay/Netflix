@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Modal from "../modal/Modal";
 import { faPlay, faCheck, faThumbsUp, faThumbsDown, faHeart, faChevronDown, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "./Card.css";
@@ -6,41 +6,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tooltip from "../tooltip/Tooltip";
 import Movie_Card from "./MovieCard";
 import default_movie from "../../assets/img/movies/default.png";
-import YouTube from "react-youtube";
-import movieTrailer from 'movie-trailer';
 
-const MovieCards = ({ genres, base_url, movies, title }) => {
-    const [movieModal, setMovieModal] = useState(null);
+const MovieCards = ({ data, title }) => {
+    const [dataModal, setDataModal] = useState(null);
     const [showArrow, setShowArrow] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isSliding, setIsSliding] = useState(false);
-    const [trailerId, setTrailerId] = useState(null);
-
     const ITEMSPERPAGE = 5;
     const cardsRef = useRef(null);
 
-    const getNextIndex = (index) => (index + ITEMSPERPAGE) % (movies?.length || 0);
-    const getPrevIndex = (index) => (index - ITEMSPERPAGE + (movies?.length || 0)) % (movies?.length || 0);
-
-    useEffect(() => {
-        if (movieModal) {
-            movieTrailer(movieModal?.title || movieModal?.original_title || movieModal?.name || movieModal?.original_name)
-                .then((response) => {
-                    if (response) {
-                        const videoId = new URL(response).searchParams.get("v");
-                        setTrailerId(videoId);
-                    } else {
-                        setTrailerId(null);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching trailer:", error);
-                    setTrailerId(null);
-                });
-        }
-    }, [movieModal]);
+    const getNextIndex = (index) => (index + ITEMSPERPAGE) % (data?.length || 0);
+    const getPrevIndex = (index) => (index - ITEMSPERPAGE + (data?.length || 0)) % (data?.length || 0);
 
     const handleNext = () => {
         if (isSliding || !cardsRef.current) return;
@@ -91,9 +69,9 @@ const MovieCards = ({ genres, base_url, movies, title }) => {
     };
 
     const getItemsForCurrentPage = () => {
-        if (!movies || movies.length === 0) return [];
+        if (!data || data.length === 0) return [];
 
-        const totalIndex = movies.length;
+        const totalIndex = data.length;
         const prevIndex = (currentIndex - 1 + totalIndex) % totalIndex;
         const nextIndex = (currentIndex + ITEMSPERPAGE) % totalIndex;
 
@@ -101,14 +79,14 @@ const MovieCards = ({ genres, base_url, movies, title }) => {
         let currentPageItems = [];
 
         if (endIndex <= totalIndex) {
-            currentPageItems = movies.slice(currentIndex, endIndex);
+            currentPageItems = data.slice(currentIndex, endIndex);
         } else {
-            const itemsFromEnd = movies.slice(currentIndex);
-            const itemsFromStart = movies.slice(0, ITEMSPERPAGE - itemsFromEnd.length);
+            const itemsFromEnd = data.slice(currentIndex);
+            const itemsFromStart = data.slice(0, ITEMSPERPAGE - itemsFromEnd.length);
             currentPageItems = [...itemsFromEnd, ...itemsFromStart];
         }
 
-        return [movies[prevIndex], ...currentPageItems, movies[nextIndex]];
+        return [data[prevIndex], ...currentPageItems, data[nextIndex]];
     };
 
     return (
@@ -122,7 +100,7 @@ const MovieCards = ({ genres, base_url, movies, title }) => {
                 <button className={`pagination-button left-arrow ${showArrow ? 'visible' : ''}`} onClick={handlePrev}>
                     <FontAwesomeIcon size="lg" icon={faChevronLeft} />
                 </button>
-                {Array.isArray(movies) && movies.length > 0 ? (
+                {Array.isArray(data) && data.length > 0 ? (
                     getItemsForCurrentPage().map((movie, index) => {
                         const isFirst = index === 0;
                         const isLast = index === getItemsForCurrentPage().length - 1;
@@ -131,9 +109,8 @@ const MovieCards = ({ genres, base_url, movies, title }) => {
                                 key={index}
                                 setModalPosition={setModalPosition}
                                 setShowModal={setShowModal}
-                                setMovie={setMovieModal}
-                                movie={movie}
-                                base_url={base_url}
+                                setData={setDataModal}
+                                data={movie}
                                 className={`${isFirst || isLast ? 'half-view no-hover' : ''} visible-card`}
                             />
                         );
@@ -148,34 +125,10 @@ const MovieCards = ({ genres, base_url, movies, title }) => {
 
             <Modal setShowArrow={setShowArrow} showModal={showModal} position={modalPosition} setShowModal={setShowModal}>
                 <div className="modal-image-container">
-                    {trailerId ? (
-                        <YouTube 
-                        className="video" 
-                        videoId={trailerId} 
-                        opts={{
-                            width: "100%",
-                            height: "100%",
-                            playerVars: {
-                                autoplay: 1,         
-                                modestbranding: 1,   
-                                controls: 0,         
-                                showinfo: 0,         
-                                rel: 0,              
-                                fs: 0,               
-                                iv_load_policy: 3,   
-                                disablekb: 1,        
-                                playsinline: 1,      
-                                widget_referrer: '', 
-                                cc_load_policy: 0,   
-                                enablejsapi: 1,      
-                                origin: window.location.origin 
-                            },
-                        }} 
-                    />
-                    ) : (
-                        <img src={movieModal?.backdrop_path ? base_url + movieModal.backdrop_path : default_movie} alt="Movie Poster" />
-                    )}
-                    <h3 className="img-title">{movieModal?.title}</h3>
+                    <img
+                        src={dataModal?.Poster ? dataModal.Poster : default_movie}
+                        alt="Movie Poster" />
+                    <h3 className="img-title">{dataModal?.Title}</h3>
                 </div>
                 <div className="modal-content">
                     <div className="button-wrapper">
@@ -222,18 +175,13 @@ const MovieCards = ({ genres, base_url, movies, title }) => {
                         </div>
                     </div>
                     <div className="modal-details">
-                        <span className="modal-age">{movieModal?.adult ? "18+" : "R"}</span>
-                        <span className="modal-duration">"10</span>
+                        <span className="modal-age">{dataModal?.Rated}</span>
+                        <span className="modal-duration">{dataModal?.Runtime}</span>
                     </div>
                     <ul className="modal-tags">
-                        {movieModal?.genre_ids?.map((genreId) => {
-                            const genre = genres.find((g) => g.id === genreId);
-                            if (!genre) {
-                                console.warn(`Missing genre ID: ${genreId}`);
-                                return null;
-                            }
-                            return <li key={genreId} className="modal-tag">{genre.name}</li>;
-                        })}
+                        {dataModal?.Genres?.map((Genre, index) => (
+                            <li key={index} className="modal-tag">{Genre}</li>
+                        ))}
                     </ul>
                 </div>
             </Modal>

@@ -1,43 +1,26 @@
-import axios from "axios";
-import Requests from "../Requests";
+import moviesData from "../assets/json/movies.json";
+import movieTrailer from "movie-trailer";
 
 export const getMovies = async () => {
-    try {
-        const categories = Object.keys(Requests);
-        const movieRequests = categories.map(async (category) => {
-            const response = await axios.get(Requests[category]);
-            return { category, movies: response.data.results || [] };
-        });
-
-        const movieData = await Promise.all(movieRequests);
-        return movieData.reduce((acc, { category, movies }) => {
-            acc[category] = movies;
-            return acc;
-        }, {});
-    } catch (error) {
-        console.error("Error fetching movies:", error);
-        return {};
+    if (moviesData?.length) {
+        return moviesData.map(movie => ({
+            ...movie,
+            Genres: movie.Genre ? movie.Genre.split(", ").map(genre => genre.trim()) : [],
+            Actors: movie.Actors ? movie.Actors.split(", ").map(actor => actor.trim()) : []
+        }));
     }
+    return [];
 };
 
-export const getGenre = async () => {
+export const getTrailers = async (movieTitle) => {
     try {
-        const response = await axios.get(Requests.fetchGenre);
-        if (!response.data.genres) throw new Error("No genres found");
-        return response.data.genres;
+        const url = await movieTrailer(movieTitle);
+        if (url) {
+            const urlParams = new URLSearchParams(new URL(url).search);
+            return urlParams.get("v");
+        }
     } catch (error) {
-        console.error("Error fetching genres:", error);
-        return [];
+        console.error(`Error fetching trailer for ${movieTitle}:`, error);
     }
-};
-
-export const getTrailers = async () => {
-    try {
-        const url = "https://api.kinocheck.com/trailers";
-        const response = await axios.get(url);
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching trailers:", error);
-        return [];
-    }
+    return null;
 };

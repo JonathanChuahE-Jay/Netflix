@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import "./Card.css";
 import default_movie from "../../assets/img/movies/default.png";
 
-const MovieCard = ({ setMovie, movie, setModalPosition, setShowModal, className, base_url }) => {
+const MovieCard = ({ setData, data, setModalPosition, setShowModal, className }) => {
     const cardRef = useRef(null);
     let hoverTimeout = useRef(null);
 
@@ -21,7 +21,7 @@ const MovieCard = ({ setMovie, movie, setModalPosition, setShowModal, className,
         }
 
         hoverTimeout.current = setTimeout(() => {
-            setMovie(movie);
+            setData(data);
             setModalPosition({
                 top: cardRect.top + window.scrollY + cardRect.height / 2,
                 left: leftPosition,
@@ -45,7 +45,7 @@ const MovieCard = ({ setMovie, movie, setModalPosition, setShowModal, className,
             onMouseLeave={handleMouseLeave}
         >
             <img
-                src={movie.backdrop_path ? base_url + movie.backdrop_path : default_movie}
+                src={data?.Poster? data.Poster : default_movie}
                 alt="Movie Poster" className="card-image" />
         </div>
     );

@@ -2,35 +2,42 @@ import logo from "../../assets/img/logo/netflix_N.png";
 import { faExclamationCircle, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Trailer.css";
+import YouTube from "react-youtube";
 
-const Trailer = ({ trailers }) => {
-    
+const Trailer = ({ trailer }) => {
+    if (!trailer) return null;
     return (
         <div className="trailer">
-            <video
-                src={`https://www.youtube.com/embed/${trailers?.youtube_video_id}?autoplay=1&loop=1&mute=1&playlist=${trailers?.youtube_video_id}`}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
+            <YouTube
+                className="trailer-video"
+                videoId={trailer?.youtube_video_id}
+                opts={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
+                    playerVars: {
+                        autoplay: 1,
+                        modestbranding: 1,
+                        controls: 0,
+                        showinfo: 0,
+                        rel: 0,
+                        fs: 0,
+                        iv_load_policy: 3,
+                        disablekb: 1,
+                        playsinline: 1,
+                        widget_referrer: '',
+                        cc_load_policy: 0,
+                        enablejsapi: 1,
+                        origin: window.location.origin
+                    },
                 }}
             />
             <div className="trailer-logo-text">
                 <img src={logo} className="trailer-logo" alt="Netflix Logo" />
                 SERIES
             </div>
-            <div className="trailer-header">Squid Game</div>
+            <div className="trailer-header">{trailer?.title}</div>
             <div className="trailer-description">
-                Squid Game is a South Korean survival thriller TV series about a group of
-                people who play deadly children's games for a large cash prize. The series was
-                created by Hwang Dong-hyuk and released on Netflix in 2021.
+                {trailer?.description}
             </div>
             <div
                 className="trailer-button-container"
