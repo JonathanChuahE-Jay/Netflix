@@ -8,7 +8,7 @@ const NavbarDropdownMenuLinks = ({ links }) => {
         <>
             <DropdownMenu title="Browse" icon={faChevronDown} padding="0px" margin="0px 0px 0px 20px">
                 {links.map((link, index) => (
-                    <DropdownItem key={index} onClick={link.onClick}>
+                    <DropdownItem key={index} link={link.to}>
                         {link.name}
                     </DropdownItem>
                 ))}

@@ -4,7 +4,7 @@ import { faPlay, faCheck, faThumbsUp, faThumbsDown, faHeart, faChevronDown, faCh
 import "./Card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tooltip from "../tooltip/Tooltip";
-import Movie_Card from "./MovieCard";
+import MovieCard from "./MovieCard";
 import default_movie from "../../assets/img/movies/default.png";
 
 const MovieCards = ({ data, title }) => {
@@ -65,7 +65,7 @@ const MovieCards = ({ data, title }) => {
                 visibleCards.forEach(card => card.classList.remove('slide-in-left'));
                 setIsSliding(false);
             }, 300);
-        }, 100);
+        }, 300);
     };
 
     const getItemsForCurrentPage = () => {
@@ -92,7 +92,7 @@ const MovieCards = ({ data, title }) => {
     return (
         <>
             <p>{title}</p>
-            <div className="cards"
+            <div className="movie-cards"
                 ref={cardsRef}
                 onMouseEnter={() => setShowArrow(true)}
                 onMouseLeave={() => setShowArrow(false)}
@@ -105,7 +105,7 @@ const MovieCards = ({ data, title }) => {
                         const isFirst = index === 0;
                         const isLast = index === getItemsForCurrentPage().length - 1;
                         return (
-                            <Movie_Card
+                            <MovieCard
                                 key={index}
                                 setModalPosition={setModalPosition}
                                 setShowModal={setShowModal}
@@ -123,7 +123,7 @@ const MovieCards = ({ data, title }) => {
                 </button>
             </div>
 
-            <Modal setShowArrow={setShowArrow} showModal={showModal} position={modalPosition} setShowModal={setShowModal}>
+            <Modal hoverEffect={true} setShowArrow={setShowArrow} showModal={showModal} position={modalPosition} setShowModal={setShowModal}>
                 <div className="modal-image-container">
                     <img
                         src={dataModal?.Poster ? dataModal.Poster : default_movie}

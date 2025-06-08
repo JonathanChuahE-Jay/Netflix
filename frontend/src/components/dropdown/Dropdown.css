@@ -83,6 +83,7 @@
 .dropdown-item.divider {
     border-bottom: 1px solid white;
 }
+
 .dropdown-item {
     font-size: 14px;
     color: white;
@@ -90,6 +91,8 @@
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
     text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown-item.divider:last-child {
@@ -99,4 +102,10 @@
 .dropdown-item:hover {
     background: #f1f1f1;
     color: #333;
+}
+
+.dropdown-img {
+    width: 24px;
+    margin-right: 10px;
+    border-radius: 5px;
 }

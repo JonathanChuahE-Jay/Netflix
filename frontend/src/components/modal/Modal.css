@@ -46,9 +46,11 @@
     pointer-events: auto;
     animation: zoomIn 0.2s ease-in-out forwards;
 }
-.modal-content{
+
+.modal-content {
     padding: 15px;
 }
+
 .modal-tags {
     list-style: none;
     display: flex;

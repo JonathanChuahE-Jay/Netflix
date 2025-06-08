@@ -8,7 +8,7 @@ const PopoverMenu = ({ children, icon, size, color, notificationCount, fontSize 
 
 
     return (
-        <div className="popover-container"
+        <div className="popover"
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setTimeout(() => setIsOpen(false), 200)}
         >
@@ -16,11 +16,11 @@ const PopoverMenu = ({ children, icon, size, color, notificationCount, fontSize 
                 className="popover-button"
             >
                 <FontAwesomeIcon icon={icon} size={size} color={color} />
-                <NotificationBadge count={notificationCount} />
+                <NotificationBadge size={size} count={notificationCount} />
             </button>
 
             {isOpen && (
-                <div className="popover-content" style={{ fontSize: fontSize }}>
+                <div className="popover-menu" style={{ fontSize: fontSize }}>
                     <div className="popover-arrow"></div>
                     {children}
                 </div>

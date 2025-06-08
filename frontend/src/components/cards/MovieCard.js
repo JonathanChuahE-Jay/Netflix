@@ -39,14 +39,14 @@ const MovieCard = ({ setData, data, setModalPosition, setShowModal, className })
 
     return (
         <div
-            className={`card ${className}`}
+            className={`movie-card ${className}`}
             ref={cardRef}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
             <img
                 src={data?.Poster? data.Poster : default_movie}
-                alt="Movie Poster" className="card-image" />
+                alt="Movie Poster" className="movie-card-image" />
         </div>
     );
 };

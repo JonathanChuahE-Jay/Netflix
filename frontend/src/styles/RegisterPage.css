@@ -1,0 +1,134 @@
+/* Register */
+.register-page {
+    background: #141414;
+    padding: 80px 60px;
+    color: white;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Plans */
+.plan-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.plan-card {
+    width: 220px;
+    padding: 20px;
+    background: #222;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: scale(1.05);
+}
+
+.plan-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.plan-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+}
+
+.plan-device-tags {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.plan-device-tag::after {
+    content: " • ";
+    margin-left: 5px;
+    color: #aaa;
+}
+
+.plan-device-tag:last-child::after {
+    content: "";
+}
+
+/* Benefits */
+.benefits-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16px;
+}
+
+/* Payments */
+.payment-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.payment-method-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.payment-method-input-split {
+    display: flex;
+    gap: 10px;
+}
+
+.payment-subscription-change-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 0px 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.payment-subscription-change-info {
+    text-align: left;
+    width: auto;
+    flex: 1;
+}
+
+.payment-subscription-change-button {
+    text-align: right;
+    width: auto;
+    flex-shrink: 0;
+    color: blue;
+    cursor: pointer;
+}
+
+.payment-checkbox{
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    text-align: left;
+}

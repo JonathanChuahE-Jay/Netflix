@@ -1,11 +1,12 @@
 p {
-    color: white;
     margin: 10px 0px
 }
-.home {
+
+.home-page {
     background-color: black;
     overflow-x: hidden;
 }
-.section-container{
+
+.section-container {
     padding: 20px;
 }

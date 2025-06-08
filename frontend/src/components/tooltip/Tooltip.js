@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Tooltip.css";
 
-const Tooltip = ({ children, text, position = "top", bg = "black" }) => {
+const Tooltip = ({ children, text, position = "top", bg = "black", fontSize }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const handleMouseEnter = () => setIsVisible(true);
@@ -11,7 +11,7 @@ const Tooltip = ({ children, text, position = "top", bg = "black" }) => {
         <div className="tooltip-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             {children}
             {isVisible && (
-                <div className={`tooltip ${position}`}>
+                <div className={`tooltip ${position}`} style={{fontSize}}>
                     <div className="tooltip-arrow"></div>
                     <span>{text}</span>
                 </div>
